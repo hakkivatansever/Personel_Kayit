@@ -38,7 +38,13 @@ namespace Personel_Kayit
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
             baglanti.Open();
-
+            SqlCommand komut = new SqlCommand("insert into Tbl_Personel (PerAd,PerSoyad,PerSehir,PerMaas) values (@p1,@p2,@p3,@p4)", baglanti);
+            komut.Parameters.AddWithValue("@p1", TxtAd.Text);
+            komut.Parameters.AddWithValue("@p2", TxtSoyad.Text);
+            komut.Parameters.AddWithValue("@p3", CmbSehir.Text);
+            komut.Parameters.AddWithValue("@p4", MskMaas.Text);
+            komut.ExecuteNonQuery();
+            MessageBox.Show("Personel Eklendi");
             baglanti.Close();
         }
     }
